@@ -1,5 +1,5 @@
 class Notbook():
-    def __init__(self, marca, imagem, preco, descricao, resenhas, estrelas):
+    def __init__(self, marca, preco, imagem, resenhas, estrelas, descricao):
         self.marca = marca
         self.imagem = imagem
         self.preco = preco
@@ -14,13 +14,13 @@ class Notbook():
         return self.preco
 
     def getDescricao(self):
-        return self.preco
+        return self.descricao
     
     def getResenhas(self):
-        return self.descricao
+        return self.resenhas
 
     def getImagem(self):
-        return self.resenhas
+        return self.imagem
 
     def getEstrelas(self):
         return self.estrelas
