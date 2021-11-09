@@ -16,9 +16,9 @@ navegador.find_element_by_class_name('subcategory-link').click()
 
 # coloca todas as div de notbook em uma lista de elementos
 notbooks = navegador.find_elements_by_class_name('col-sm-4')
-
+# poderia colocar os objetos em uma lista
+lista = []
 def retorna_str_json():
-    strjson = ''
     # itera por cada objeto de notbooks
     for notbook in notbooks:
         marca = notbook.find_element_by_tag_name('a').get_attribute('title')
@@ -35,15 +35,15 @@ def retorna_str_json():
             descricao = notbook.find_element_by_class_name('description').text
             
             obj = Notbook(marca, preco, imagem, resenhas, estrelas, descricao)
-            strjson = strjson + '{ "marca":' + obj.marca + ', "preco":' + obj.preco + \
-                 ', "imagem":' + obj.imagem + ', "resenhas":' + obj.resenhas + \
-                      ', "estrela":'+ obj.estrelas + ', "descricao":' + obj.descricao + ' },'
-    return strjson    
-                   
+            lista.append({ "marca": obj.marca, "preco": obj.preco \
+                 , "imagem": obj.imagem , "avaliacoes":  obj.resenhas \
+                , "estrelas": obj.estrelas, "descricao ":obj.descricao })
+    return lista
+                  
 print(retorna_str_json()) 
 
 # gera arquivo .json passando uma estrutura python
-# with open('dados.json', 'w') as json_file:
-# json.dump(lista, json_file, indent=4)
+with open('dados.json', 'w') as json_file:
+    json.dump(lista, json_file, indent=4)
 
 
